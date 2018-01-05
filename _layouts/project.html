@@ -70,9 +70,11 @@
     </div>
     {% if page.sections %} {% for section in page.sections %}
     <div class="tab-pane fade" id="{{ section.id }}" role="tabpanel" aria-labelledby="{{ section.id }}-tab">
-        {% assign filename_parts = section.contents_file | split: "." %} {% if filename_parts.last == "md" %} {% capture contents
-        %}{% include {{ section.contents_file }} %}{% endcapture %} {{ contents | markdownify}} {% else %} {% include {{
-        section.contents_file }} %} {% endif %}
+        <div class="container">
+            {% assign filename_parts = section.contents_file | split: "." %} {% if filename_parts.last == "md" %} {% capture contents
+            %}{% include {{ section.contents_file }} %}{% endcapture %} {{ contents | markdownify}} {% else %} {% include
+            {{ section.contents_file }} %} {% endif %}
+        </div>
     </div>
     {% endfor %} {% endif %}
     <div class="tab-pane fade" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
