@@ -1,0 +1,67 @@
+.bg-horse {
+    background-color: black !important;
+}
+
+.navbar-brand {
+    font-family: Hack, monospace;
+    line-height: 2.3rem;
+    opacity: 1;
+}
+
+.horse-mane, .horse-face, .horse-ears, .horse-outline, .horse-teeth-eye {
+    transition-property: fill;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+    fill: transparent !important;
+}
+
+.horse-outline {
+    fill: white !important;
+}
+
+.navbar-brand:hover .horse-face {
+    fill: #9e6037 !important;
+}
+
+.navbar-brand:hover .horse-mane {
+    fill: #eae6e3 !important;
+}
+
+.navbar-brand:hover .horse-teeth-eye {
+    fill: white !important;
+}
+
+.navbar-brand:hover .horse-ears {
+    fill: #633b22 !important;
+}
+
+.navbar-brand:hover .horse-outline {
+    fill: #1f1f1f !important;
+}
+
+.brand-icon, .brand-icon svg {
+    height: 40px;
+    width: 47px;
+}
+
+.brand-marker {
+    opacity: 0;
+    margin-left: -0.6em;
+}
+
+.navbar-brand:hover .brand-marker{
+    animation-name: marker_blink;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(1,-0.01,0,1);
+}
+
+@keyframes marker_blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

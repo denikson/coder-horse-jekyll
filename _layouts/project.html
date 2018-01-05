@@ -1,0 +1,93 @@
+{% include header.html %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            {% if page.jumbo_content_file %}
+            <div class="col-auto">
+                {% assign filename_parts = page.jumbo_content_file | split: "." %} {% if filename_parts.last == "md" %} {% capture contents
+                %}{% include {{ page.jumbo_content_file }} %}{% endcapture %} {{ contents | markdownify}} {% else %} {% include
+                {{ page.jumbo_content_file }} %} {% endif %}
+            </div>
+            {% endif %}
+            <div class="col">
+                <h1 class="display-4">{{ page.project_title }}
+                    <a class="btn btn-outline-dark btn-lg" href="{{ site.github.repository_url }}" role="button">View on
+                        <i class="fab fa-github"></i>
+                    </a>
+                </h1>
+                <p class="lead">{{ page.project_subtitle }}</p>
+                <hr class="my-4"> {% if page.caption_file %}
+                <p>
+                    {% assign filename_parts = page.caption_file | split: "." %} {% if filename_parts.last == "md" %} {% capture contents %}{%
+                    include {{ page.caption_file }} %}{% endcapture %} {{ contents | markdownify}} {% else %} {% include
+                    {{ page.caption_file }} %} {% endif %}
+                </p>
+                {% endif %}
+                <p class="lead">
+                    {% for asset in page.asset_types %}
+                    <div class="btn-group mb-sm-1 mb-md-0">
+                        <a href="{{ site.github.latest_release.assets[asset.index].browser_download_url }}" class="btn btn-primary btn-lg" role="button">{{ site.github.latest_release.name }} ({{ asset.postfix }})</a>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-lg" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            {% for release in site.github.releases %} {% if forloop.index == 1 %} {% continue %} {% endif %}
+                            <a class="dropdown-item" href="{{ release.assets[asset.index].browser_download_url }}">{{ release.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </p>
+                {% if page.documentation_url %}
+                <p class="lead">
+                    <a class="btn btn-outline-primary btn-lg" href="{{ page.documentation_url }}" role="button">Documentation</a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="pageTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">About</a>
+    </li>
+    {% if page.sections %} {% for section in page.sections %}
+    <li class="nav-item">
+        <a class="nav-link" id="{{ section.id }}-tab" data-toggle="tab" href="#{{ section.id }}" role="tab" aria-controls="{{ section.id }}"
+            aria-selected="false">{{ section.name }}</a>
+    </li>
+    {% endfor %} {% endif %}
+    <li class="nav-item">
+        <a class="nav-link" id="info-changelog" data-toggle="tab" href="#changelog" role="tab" aria-controls="info" aria-selected="true">Changelog</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+        {{ content }}
+    </div>
+    {% if page.sections %} {% for section in page.sections %}
+    <div class="tab-pane fade" id="{{ section.id }}" role="tabpanel" aria-labelledby="{{ section.id }}-tab">
+        {% assign filename_parts = section.contents_file | split: "." %} {% if filename_parts.last == "md" %} {% capture contents
+        %}{% include {{ section.contents_file }} %}{% endcapture %} {{ contents | markdownify}} {% else %} {% include {{
+        section.contents_file }} %} {% endif %}
+    </div>
+    {% endfor %} {% endif %}
+    <div class="tab-pane fade" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
+        <div class="container">
+            {% for release in site.github.releases %}
+            <div class="row">
+                <div class="col">
+                    <h1>{{ release.name }}</h1>
+                    {{ release.body | markdownify }}
+                    <hr>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include footer.html %}
