@@ -26,7 +26,7 @@
                 {% endif %}
                 <p class="lead">
                     {% for asset in page.asset_types %}
-                    <div class="btn-group mb-1 mb-md-0">
+                    <div class="btn-group mb-1">
                         <a href="{{ site.github.latest_release.assets[asset.index].browser_download_url }}" class="btn btn-primary btn-lg" role="button">{{ site.github.latest_release.name }} ({{ asset.postfix }})</a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-lg" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -43,7 +43,7 @@
                 {% if page.buttons %}
                 <p class="lead">
                     {% for button in page.buttons %}
-                        <a class="btn btn-outline-primary btn-lg mb-1 mb-md-0" href="{{ button.href }}" role="button"> {{ button.name }}</a>
+                        <a class="btn btn-outline-primary btn-lg mb-1" href="{{ button.href }}" role="button"> {{ button.name }}</a>
                     {% endfor %}
                 </p>
                 {% endif %}
