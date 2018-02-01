@@ -17,7 +17,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{% if item.href %}{{ item.href }}{% else %}#{% endif %}" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ item.name}}
+                        {{ item.name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for subitem in item.items %}
