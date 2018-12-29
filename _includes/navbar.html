@@ -10,28 +10,11 @@
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {% if site.data.nav %}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                {% for item in site.data.nav %} {% if item.items %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% if item.href %}{{ item.href }}{% else %}#{% endif %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ item.name }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for subitem in item.items %}
-                        <a class="dropdown-item" href="{% if subitem.href %}{{ subitem.href }}{% else %}#{% endif %}">{{ subitem.name }}</a>
-                        {% endfor %}
-                    </div>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ item.href }}">{{ item.name }}</a>
-                </li>
-                {% endif %} {% endfor %}
+                {% include navbar/dropdown.html name="Projects" itemNames=["Yet Another Translator", "IMGUI Translation Loader"] itemHrefs=["/CM3D2.YATranslator", "/IMGUITranslationLoader"] %}
+                {% include navbar/link.html name="Blog" href="/neigh-blog" %}
             </ul>
         </div>
-        {% endif %}
     </div>
 </nav>

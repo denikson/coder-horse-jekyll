@@ -1,0 +1,11 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="{% if include.href %}{{ include.href }}{% else %}#{% endif %}" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ include.name }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for subitem in include.itemNames %}
+        <a class="dropdown-item" href="{% if include.itemHrefs[forloop.index0] %}{{ include.itemHrefs[forloop.index0] }}{% else %}#{% endif %}">{{ subitem }}</a>
+        {% endfor %}
+    </div>
+</li>
