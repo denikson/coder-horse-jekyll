@@ -1,5 +1,5 @@
-{% assign itemNamesArray = itemNames | split ',' %}
-{% assign itemHrefsArray = itemHrefs | split ',' %}
+{% assign itemNamesArray = itemNames | split: "," %}
+{% assign itemHrefsArray = itemHrefs | split: "," %}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="{% if include.href %}{{ include.href }}{% else %}#{% endif %}" id="navbarDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
